@@ -2,7 +2,7 @@
 All notable changes to this project will be documented in this file.
 
 {% for release in releases %}
-## [{{ release.version }}] - {{ release.published_at | dateformat }}
+## [{{ release.version }}] - {{ release.published_at }}
 
 {% if release.sections %}
 {% for section_type, section_commits in release.sections.items() %}
