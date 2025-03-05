@@ -1,0 +1,19 @@
+name: Release
+on:
+  push:
+    branches: [main]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: pip install poetry python-semantic-release
+      - run: poetry install
+      - run: poetry run semantic-release -vv version
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}

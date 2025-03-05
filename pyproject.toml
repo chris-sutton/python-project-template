@@ -1,0 +1,46 @@
+[project]
+name = "mock-project"
+version = "0.1.0"
+description = "A template for a python project."
+authors = [
+    {name = "Christopher Sutton",email = "csuttonmajor@gmail.com"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.13"
+dependencies = [
+]
+
+[tool.poetry]
+name = "mock_project"
+version = "0.1.0"
+description = "A mock Python project template"
+authors = ["Your Name <your.email@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+
+[tool.poetry.dev-dependencies]
+pytest = "^8.3.5"
+ruff = "^0.9.9"
+python-semantic-release = "^9.21.0"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.semantic_release]
+branch = "main"
+version_source = "tag"
+tag_format = "v{version}"
+upload_to_pypi = false  # Set to true later if publishing
+changelog_file = "CHANGELOG.md"
+
+[tool.semantic_release.remote]
+type = "github"
+token = { env = "GH_TOKEN" }
+
+[tool.semantic_release.changelog.default_templates]
+changelog_file = "CHANGELOG.md"
