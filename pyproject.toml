@@ -8,8 +8,6 @@ authors = [
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = [
-]
 
 [tool.poetry]
 name = "mock_project"
@@ -32,15 +30,23 @@ requires = ["poetry-core>=2.0.0,<3.0.0"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.semantic_release]
-branch = "main"
-version_source = "tag"
-tag_format = "v{version}"
-upload_to_pypi = false  # Set to true later if publishing
-changelog_file = "CHANGELOG.md"
+branch = "main"              # Releases from main branch
+version_source = "tag"       # Version derived from tags
+tag_format = "v{version}"    # Tags like v0.1.0
+upload_to_pypi = false       # No PyPI upload for template
+changelog_file = "CHANGELOG.md"  # Explicitly set changelog file
 
 [tool.semantic_release.remote]
 type = "github"
 token = { env = "GH_TOKEN" }
 
-[tool.semantic_release.changelog.default_templates]
-changelog_file = "CHANGELOG.md"
+[tool.semantic_release.changelog]
+template_dir = "templates"   # Optional: Custom templates (we’ll add this)
+exclude_commit_patterns = [
+    "^Merge branch",
+    "^Bump version"
+]  # Skip merge and version bump commits in changelog
+
+[tool.semantic_release.commit_parser_options]
+minor_tags = ["feat"]        # Features trigger minor bumps
+patch_tags = ["fix", "perf"] # Fixes and perf trigger patch bumps
