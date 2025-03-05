@@ -1,0 +1,18 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+{% for release in releases %}
+## [{{ release.version }}] - {{ release.published_at | dateformat }}
+
+{% if release.sections %}
+{% for section_type, section_commits in release.sections.items() %}
+### {{ section_type | title }}
+{% for commit in section_commits %}
+- {{ commit.message | capitalize }} ({{ commit.hexsha[:7] }})
+{% endfor %}
+{% endfor %}
+{% else %}
+- No notable changes.
+{% endif %}
+
+{% endfor %}
